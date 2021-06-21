@@ -1,0 +1,207 @@
+---
+title: "R basico"
+author: "JAT"
+date: "6/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{r pressure, echo=FALSE}
+
+my_vec <- c(2, 1, 4, 3, 1)
+sorted_vec <- sort(x = my_vec, decreasing = TRUE)
+print(sorted_vec)
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+ #R packages can be accessed and installed from different
+#sources. The main being CRAN (The Comprehensive R Archive network),
+#and Github. It’s worth knowing that the quantity and diversity of R packages increase every day.
+
+
+
+#To find out the
+#current amount of packages on CRAN, type and execute the following commands in the prompt:
+# get a matrix with available packages
+df_cran_pkgs <- available.packages()
+# find the number of packages
+n_cran_packages <- nrow(df_cran_pkgs)
+# print it
+print(n_cran_packages)
+
+#check the amount of locally installed packages in R with
+#the installed.packages command:
+# find number of packages currently installed
+n_local_packages <- nrow(installed.packages())
+print(n_local_packages)
+
+```
+
+
+
+```{r install packages from CRAN}
+# install package readr
+install.packages("readr")
+
+# load package readr
+library(readr)
+```
+
+
+```{r install packages from GITHUB}
+# install devtools first
+install.packages('devtools')
+
+
+
+#In the following example, we will install the development version of package dplyr:
+# install ggplot2 from github
+devtools::install_github("hadley/dplyr")
+
+```
+```{r  }
+# set x
+x <- 123
+# set my_x, my_y and my_z in one line
+my_x <- 1; my_y <- 2; my_z <- 3
+```
+
+
+
+
+```{r  }
+# create numeric atomic vector
+x <- c(1, 2, 3)
+# print it
+print(x)
+
+
+# create character atomic vector
+y <- c('text 1', 'text 2', 'text 3', 'text 4')
+# print it
+print(y)
+
+
+# a mixed vector
+x <- c(1, 2, '3')
+# print result of forced conversion
+print(x)
+
+
+```
+
+
+
+
+```{r  }
+
+# set vec
+x <- 1:10
+# print the textual representation of a vector
+print(str(x))
+
+
+# set x
+x <- 2
+# print customized message
+message('The value of x is ', x)
+
+
+# set size and vector
+my_size <- 
+my_vec <- 1:my_size
+# define string vector
+my_str <- paste0('My value is equal to ', my_vec)
+# print it
+print(my_str)
+
+
+
+```
+
+
+```{r  }
+
+
+# create atomic vector
+x <- c(2, 3, 3, 4, 2,1)
+# get length of x
+n <- length(x)
+
+print(n)
+
+```
+
+
+
+
+```{r  }
+
+# create a matrix
+M <- matrix(1:20, nrow = 4, ncol = 5)
+# print matrix
+print(M)
+
+
+my_nrow <- nrow(M)
+my_ncol <- ncol(M)
+my_n_elements <- length(M)
+
+# display messages
+message('The number of lines in M is ', my_nrow)
+
+message('The number of columns in M is ', my_ncol)
+
+message('The number of elements in M is ', my_n_elements)
+
+
+# set text object
+my_char <- 'abcde'
+# print result of length
+print(length(my_char))
+
+
+```
+
+```{r  }
+
+ # set x
+my_x <- c(1, 5, 4, 3, 2, 7, 3.5, 4.3)
+
+# get the third element of x
+elem_x <- my_x[3]
+# print it
+print(elem_x)
+
+
+
+```
+
