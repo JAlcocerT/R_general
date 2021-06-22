@@ -205,3 +205,239 @@ print(elem_x)
 
 ```
 
+
+
+
+
+
+```{r  }
+
+# Selecting Elements from an Atomic
+#Vector
+
+# set x
+my_x <- c(1, 5, 4, 3, 2, 7, 3.5, 4.3)
+
+# get the third element of x
+elem_x <- my_x[3]
+# print it
+print(elem_x)
+
+
+# set vector with indices
+my_idx <- (length(my_x)-1):length(my_x)
+# get last and penultimate value of my_x
+piece_x_1 <- my_x[my_idx]
+# print it
+print(piece_x_1)
+
+
+# set object
+my_vec <- c(1, 2, 3)
+# print non-existing fourth element
+print(my_vec[4])
+
+
+# find all values in my_x that is greater than 3
+piece_x_2 <- my_x[my_x>3]
+# print it
+print(piece_x_2)
+
+
+# find all values of my_x that are greater than 2 and lower then 4
+piece_x_3 <- my_x[ (my_x > 2) & (my_x < 4) ]
+print(piece_x_3)
+
+# find all values of my_x that are lower than 3 or higher than 6
+piece_x_4 <- my_x[ (my_x < 3) | (my_x > 6) ]
+# print it
+print(piece_x_4)
+
+```
+
+
+Moreover, logic indexing also works with the interaction of different objects.
+That is, we can use a logical condition in one object to select items from
+another:
+
+```{r  }
+
+# set my_x and my.y
+my_x <- c(1, 4, 6, 8, 12) #and select them here
+my_y <- c(-2, -3, 4, 10, 14) #it takes 3,4,5
+# find all elements of my_x where my.y is higher than 0
+my_piece_x <- my_x[my_y > 0 ]
+# print it
+print(my_piece_x)
+
+```
+
+
+```{r create logical object }
+# create a logical object
+my_logical <- my_y > 0
+# print it
+print(my_logical)
+
+# find its class
+class(my_logical)
+
+
+```
+
+
+
+
+```{r remove object from memory }
+
+# set x
+x <- 1
+# remove x
+rm('x')
+
+
+#clean all memory
+#rm(list = ls())
+```
+
+
+
+
+```{r working directory }
+ 
+# get current dir
+my_dir <- getwd()
+# display it
+print(my_dir)
+
+
+#change working directory
+
+# set where to change directory
+#my_d <- 'C:/My Research/'
+# change it
+setwd(my_dir)
+
+my_path <- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(my_path)
+setwd("C:/Users/jesus.alcocer/OneDrive - Cloud Best sp. z o.o/R/R-general")
+
+```
+
+
+
+
+
+
+```{r read csv }
+ 
+# read CSV file
+setwd("C:/Users/jesus.alcocer/OneDrive - Cloud Best sp. z o.o/R/R-general")
+df <- read.csv('Nested_pie_data.csv')
+print(head(df))
+
+#install.packages("tidyverse")
+#install.packages("dplyr")
+#library(dplyr)
+library(tidyverse)
+glimpse(df) #also part of dplyr
+ 
+```
+```{r exporting data}
+ 
+# set the number of rows
+N <- 100
+# set dataframe
+my_df <- data.frame(y = runif(N),
+z = rep('a',N))
+# print it
+print(head(my_df))
+
+
+install.packages("readr")
+library(readr)
+# set file out
+f_out <- 'temp.csv'
+# write to files
+write_csv(x = my_df,
+file = f_out)
+
+```
+
+
+
+```{r read xlsx or xls }
+ 
+#############PAGE 103!!!!!!!!!!!!!!
+
+# set excel file
+ # Loading
+library("readxl")
+# xls files
+my_data <- read_excel("Nested_pie_data.xlsx")
+
+# Specify sheet by its name
+my_data <- read_excel("my_file.xlsx", sheet = "data")
+ 
+ 
+```
+
+```{r read clipboard }
+
+my_data <- read.table(file = "clipboard", 
+                      sep = "\t", header=TRUE)
+
+```
+
+When using list.files,
+it is recommended to set input full.names as TRUE. This option makes sure
+that the names returned by the function contain the full path
+
+```{r directories }
+ 
+
+# list files in data folder
+my_files <- list.files(path = "C:/Users/jesus.alcocer/OneDrive - Cloud Best sp. z o.o/R/R-general", full.names = TRUE)
+print(my_files)
+
+# list all files with the extension .Rmd
+list.files(pattern = "*.Rmd")
+
+dir.exists('temp')
+
+
+ 
+```
+
+It is worth noting that you can also list the files recursively, that is,
+list all files from all sub-folders contained in the original address
+
+```{r directories and files }
+
+# store names of directories
+my_dirs <- list.dirs(recursive = F)
+# print it
+print(my_dirs)
+
+
+
+
+# list all files for all subfolders (IT MAY TAKE SOME TIME...)
+#list.files(path = getwd(), recursive = T, full.names = TRUE)
+list.files(path = "C:/Users/jesus.alcocer/OneDrive - Cloud Best sp. z o.o/R", recursive = T, full.names = TRUE)
+ 
+```
+
+
+
+
+```{r download files from the internet - TBF }
+
+# set link
+link_dl <- 'go.microsoft.com/fwlink/?LinkID=521962'
+link_dl <- 'https://minebest-my.sharepoint.com/:x:/r/personal/jesus_tagua_cloudbest_com/_layouts/15/Doc.aspx?sourcedoc=%7B2590C5C9-C286-4F0A-8724-22352479A901%7D&file=Nested_pie_data.xlsx&action=default&mobileredirect=true'
+local_file <- 'downloaded_with_R.xlsx' # name of local file
+download.file(url = link_dl, destfile = local_file)
+
+
+```
