@@ -343,7 +343,7 @@ library(tidyverse)
 glimpse(df) #also part of dplyr
  
 ```
-```{r exporting data}
+```{r exporting data to csv}
  
 # set the number of rows
 N <- 100
@@ -354,13 +354,66 @@ z = rep('a',N))
 print(head(my_df))
 
 
-install.packages("readr")
+#install.packages("readr")
 library(readr)
 # set file out
 f_out <- 'temp.csv'
 # write to files
 write_csv(x = my_df,
 file = f_out)
+
+```
+
+
+```{r exporting data to XLSX}
+
+install.packages("writexl")
+library(writexl)
+# set number of rows
+N <- 2500
+# create random dfs
+my_df_A <- data.frame(y = seq(1,N),z = rep('a',N))
+# set files
+my_file_1 <- 'temp_writexl.xlsx'
+my_file_2 <- 'temp_xlsx.xlsx'
+# test export
+time_write_writexl <- write_xlsx(x = my_df_A,path = my_file_1)
+
+
+####
+
+#needs java 64 bits installed
+ 
+install.packages("xlsx")
+library(xlsx)
+# create dataframe
+N <- 50
+my_df <- data.frame(y = seq(1,N), z = rep('a',N))
+# set excel file
+f_out <- 'temp.xlsx'
+
+# write to excel
+write.xlsx(x = my_df, file = f_out, sheetName = "my df")
+
+
+####
+
+
+# create two dataframes
+N <- 25
+my_df_A <- data.frame(y = seq(1, N),
+z = rep('a', N))
+my_df_B <- data.frame(z = rep('b', N))
+# set file out
+f_out <- 'data/temp.xlsx'
+# write in different sheets
+write.xlsx(x = my_df_A,
+file = f_out,
+sheetName = "my df A")
+write.xlsx(x = my_df_B,
+file = f_out,
+sheetName = "my df B",
+append = TRUE )
 
 ```
 
@@ -377,8 +430,11 @@ library("readxl")
 my_data <- read_excel("Nested_pie_data.xlsx")
 
 # Specify sheet by its name
-my_data <- read_excel("my_file.xlsx", sheet = "data")
- 
+my_data <- read_excel("Nested_pie_data.xlsx", sheet = "Sheet1")
+
+
+# print with head (first five rows)
+print(head(my_data)) 
  
 ```
 
@@ -439,5 +495,38 @@ link_dl <- 'https://minebest-my.sharepoint.com/:x:/r/personal/jesus_tagua_cloudb
 local_file <- 'downloaded_with_R.xlsx' # name of local file
 download.file(url = link_dl, destfile = local_file)
 
+
+```
+
+
+
+
+First, R will connect to the database and return a connection
+object. Based on this connection, we will send queries for importing data
+using the SQL language.
+
+```{r DB connection SQLLITE }
+
+# set name of SQLITE file
+f_sqlite <- afedR::get_data_file('SQLite_db.SQLITE')
+# open connection
+my_con <- dbConnect(drv = SQLite(), f_sqlite)
+# read table
+my_df <- dbReadTable(conn = my_con,
+name = 'MyTable1') # name of table in sqlite
+# print with str
+glimpse(my_df)
+
+
+
+```
+
+
+
+
+```{r  }
+
+
+##121
 
 ```
