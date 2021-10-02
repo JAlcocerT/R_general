@@ -488,3 +488,120 @@ ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, 
 ```{r tables}
 kable(investment_region_summary, col.names = c("Region","Dollars in Millions"),align = "cc", caption = "Table 1.1 The total investment summary for each region for the 2012 to 2018 fiscal years.")
 ```
+
+
+# Example - code chunk options - include echo eval colapse
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo = FALSE)
+```
+
+# Example - warnings - error message warning
+
+```{r data, message = FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+investment_annual_summary <- read_csv("https://assets.datacamp.com/production/repositories/5756/datasets/d0251f26117bbcf0ea96ac276555b9003f4f7372/investment_annual_summary.csv")
+investment_services_projects <- read_csv("https://assets.datacamp.com/production/repositories/5756/datasets/bcb2e39ecbe521f4b414a21e35f7b8b5c50aec64/investment_services_projects.csv")
+```
+
+
+
+# Example - add a table of content in yaml
+
+---
+title: "Investment Report"
+output: 
+  html_document:
+    toc: TRUE
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+
+---
+title: "Investment Report"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+---
+title: "Investment Report"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: FALSE
+    toc_depth: 3
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+toc
+toc_depth
+number_sections
+
+for HTML:
+toc_float #to see the table of content
+collapsed
+smooth_scroll
+
+
+# Example - parametrize report
+
+params
+  country: Indonisia
+  
+params$country
+`r params$country`
+
+# Example - customizing the report (CSS)
+
+
+it can be referenced in a styles.css file
+
+color
+background-color
+font-family
+font-size
+
+and just:
+html_document:
+  css: styles.css
+
+<style>
+body {
+  color:red;
+}
+</style>
+
+
+<style>
+body {
+   color: #708090;
+   font-family: Calibri;
+   font-size: 16px;
+   border-color: #708090;
+   backgroundcolor: #708090;
+#TOC {
+}
+pre {
+}
+#header {
+opacity: 0.6;
+}
+}
+</style>
+
+
+h1.title {
+
+}
+
+
+
