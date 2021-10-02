@@ -407,5 +407,84 @@ ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, 
 ```
 
 
+# Example
 
 
+## Datasets 
+### Investment Annual Summary
+The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each of the following regions for each fiscal year, from 2012 to 2018:
+
+
+- East Asia and the Pacific
+- Europe and Central Asia
+- Latin America and the Caribbean
+- Middle East and North Africa
+- South Asia, and Sub-Saharan Africa
+
+# Example
+
+## Datasets 
+### Investment Annual Summary
+The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each of the following regions for each fiscal year, from 2012 to 2018:
+
+1. East Asia and the Pacific      
+2. Europe and Central Asia        
+3. Latin America and the Caribbean
+4. Middle East and North Africa   
+5. South Asia                     
+6. Sub-Saharan Africa 
+
+
+
+# Example 
+
+
+```{r investment-annual-summary, out.width = '85%', fig.cap = 'Figure 1.1 The Investment Annual Summary for each region for 2012 to 2018.'}
+ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, color = region)) +
+  geom_line() +
+  labs(
+    title = "Investment Annual Summary",
+    x = "Fiscal Year",
+    y = "Dollars in Millions"
+  )
+```
+
+```{r tables}
+kable(investment_region_summary, col.names = c('Region','Dollars in Millions'), align = ccc, caption = '"Table 1.1 The total investment summary for each region for the 2012 to 2018 fiscal years."')
+```
+
+
+# Example
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo = TRUE)
+```
+
+```{r data, include = FALSE}
+library(knitr) # Load the knitr package here
+
+## Datasets 
+### Investment Annual Summary
+The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each of the following regions for each fiscal year, from 2012 to 2018:
+
+1. East Asia and the Pacific      
+2. Europe and Central Asia        
+3. Latin America and the Caribbean
+4. Middle East and North Africa   
+5. South Asia                     
+6. Sub-Saharan Africa
+
+```{r investment-annual-summary, out.width = '85%', fig.cap = 'Figure 1.1 The Investment Annual Summary for each region for 2012 to 2018.'}
+ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, color = region)) +
+  geom_line() +
+  labs(
+    title = "Investment Annual Summary",
+    x = "Fiscal Year",
+    y = "Dollars in Millions"
+  )
+```
+
+```{r tables}
+kable(investment_region_summary, col.names = c("Region","Dollars in Millions"),align = "cc", caption = "Table 1.1 The total investment summary for each region for the 2012 to 2018 fiscal years.")
+```
