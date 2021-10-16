@@ -1,0 +1,144 @@
+---
+title: "R_bitcoin"
+author: "JAT"
+date: "6/24/2021"
+output: html_document
+---
+
+## Rbitcoin package
+
+```{r setup, include=FALSE}
+
+#install.packages("Rbitcoin", repos = c("https://jangorecki.gitlab.io/Rbitcoin", "https://cran.rstudio.com"))
+#install.packages("Rbitcoin")
+
+library(Rbitcoin)
+?btc
+
+
+# set mkt, currency pair and type of action
+mkt <- "kraken"
+currency <- c("BTC","EUR")
+action <- 'trades'
+# import data
+my_l <- market.api.process(market = mkt,currency_pair = currency,action = action)
+# print it
+print(my_l)
+
+
+
+
+
+
+trades <- market.api.process('kraken',c('BTC','EUR'),'trades')
+Rbitcoin.plot(trades)
+Rbitcoin.plot(trades,export=TRUE,col='blue') #export to file, plot trades line in blue
+
+
+```
+
+Last time tested: June 2021
+
+
+
+## Coinmarketcap API connection
+
+```{r coinmarketcap R API connection}
+
+#https://github.com/amrrs/coinmarketcapr
+#https://coinmarketcap.com/api/documentation/v1/#
+
+#install.packages("coinmarketcapr")
+library(coinmarketcapr)
+# install.packages("devtools")
+#devtools::install_github("amrrs/coinmarketcapr")
+
+key<-'515ee143-4929-4b57-8c9f-a033dd7e22ab'
+coinmarketcapr::setup(key)
+
+cryptos<-get_crypto_listings()
+print(cryptos$circulating_supply[1])
+
+market_cap<-get_global_marketcap()
+
+prettyNum(market_cap$stablecoin_market_cap,big.mark=",",scientific=FALSE)
+#print(market_cap$stablecoin_market_cap)
+#print(market_cap$USD_total_market_cap)
+prettyNum(market_cap$USD_total_market_cap,big.mark=",",scientific=FALSE)
+
+
+#print(market_cap$USD_total_market_cap-market_cap$stablecoin_market_cap)
+#sprintf("%.1f", market_cap$USD_total_market_cap-market_cap$stablecoin_market_cap)
+prettyNum(market_cap$USD_total_market_cap-market_cap$stablecoin_market_cap,big.mark=",",scientific=FALSE)
+
+
+all<-get_crypto_map()
+btcv<-get_crypto_meta("BTCV")
+
+btc<-get_crypto_meta("BTC")
+
+btcvv<-get_crypto_quotes(symbol = "BTCV")
+
+#BTCV marketcap
+btcvv$market_cap<-btcvv$total_supply*btcvv$price
+prettyNum(btcvv$market_cap,big.mark=",",scientific=FALSE)
+
+
+all<-get_crypto_map()
+
+all<-all[order(all$rank),]
+
+btcv_market_cap<-252500000
+elcash_market_cap<-165880000
+
+symbols<-all$symbol[101:200]
+cap<- rep(0, length(symbols))
+coins<- rep(0, length(symbols))
+price<- rep(0, length(symbols))
+rank<-rep(101:200)
+
+marketcap<- data.frame(symbols, cap,coins,price,rank)
+row<-1
+
+#sym<-get_crypto_quotes(symbol = "BTC")
+
+for(i in symbols) {           
+  #print(i)                    
+  try(sym<-get_crypto_quotes(symbol = i))
+  marketcap$coins[row]<-sym[, c(9)]
+  marketcap$price[row]<-sym[, c(16)]
+  #sym2<-sym[, c(9, 16)]
+  #marketcap$cap[row]<-sym$total_supply*sym$price
+  #marketcap$cap[row]<-sym[, c(9)]*sym[, c(16)]
+  #education[c(10:21),c(2,6:7)]
+  #marketcap[c(row),c(cap)]<-(marketcap$coins[row])*marketcap$price[row]
+  
+   marketcap$cap[row]<-sym[, c(9)]*sym[, c(16)]
+   #marketcap$cap[row]<-prettyNum(sym[, c(9)]*sym[, c(16)],big.mark=",",scientific=FALSE)
+  
+  Sys.sleep(2.5)
+  row<-row+1
+}
+
+
+rank_btcv<-0
+rank_elcash<-0
+
+for(row in 1:nrow(marketcap)) {           
+  #print(marketcap$cap[row])
+  
+  if(marketcap$cap[row]>btcv_market_cap){
+    rank_btcv<-rank_btcv+1}
+  
+    if(marketcap$cap[row]>elcash_market_cap){
+    rank_elcash<-rank_elcash+1}
+}
+
+rank_btcv<-rank_btcv+101
+rank_elcash<-rank_elcash+101
+
+print(rank_btcv)
+print(rank_elcash)
+
+
+```
