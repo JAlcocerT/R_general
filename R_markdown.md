@@ -1,3 +1,4 @@
+```
 **bold** __bold_
 *italics* _italics_
 ~~strikethrough~~
@@ -5,7 +6,7 @@
 [link](https:....)
 
 ![](https:image)
-
+```
 
 
 
