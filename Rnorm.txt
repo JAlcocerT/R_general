@@ -1,3 +1,0 @@
-x<-rnorm(15)
-y<-rnorm(15)
-df1<-data.frame(x,y)
