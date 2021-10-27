@@ -13,9 +13,7 @@ con <- dbConnect(odbc(),
                  Database = "datawarehouse", 
                  Trusted_Connection = "True")
 
-
-
-
+#Example
 con <- dbConnect(odbc(), 
                  Driver = "SQL Server", 
                  Server = "10.135.187.91", 
