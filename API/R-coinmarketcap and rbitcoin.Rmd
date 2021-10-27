@@ -26,10 +26,6 @@ my_l <- market.api.process(market = mkt,currency_pair = currency,action = action
 print(my_l)
 
 
-
-
-
-
 trades <- market.api.process('kraken',c('BTC','EUR'),'trades')
 Rbitcoin.plot(trades)
 Rbitcoin.plot(trades,export=TRUE,col='blue') #export to file, plot trades line in blue
