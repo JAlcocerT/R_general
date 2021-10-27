@@ -55,6 +55,10 @@ iris_mean<-summarize(group_by(iris,Species),
 slength=mean(Sepal.Length),swidth=mean(Sepal.Width),
 plength=mean(Petal.Length),pwidth=mean(Petal.Width))
 
+
+x<-rnorm(15)
+y<-rnorm(15)
+df1<-data.frame(x,y)
 ```
 
 
