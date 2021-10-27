@@ -49,7 +49,7 @@ library(coinmarketcapr)
 # install.packages("devtools")
 #devtools::install_github("amrrs/coinmarketcapr")
 
-key<-'515ee143-4929-4b57-8c9f-a033dd7e22ab'
+key<-'your-coin-marlet-cap-key'
 coinmarketcapr::setup(key)
 
 cryptos<-get_crypto_listings()
