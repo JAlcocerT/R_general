@@ -50,6 +50,11 @@ x <- 1
 # set y
 y <- 'My humble text'
 
+library(dplyr)
+iris_mean<-summarize(group_by(iris,Species),
+slength=mean(Sepal.Length),swidth=mean(Sepal.Width),
+plength=mean(Petal.Length),pwidth=mean(Petal.Width))
+
 ```
 
 
