@@ -179,6 +179,7 @@ ggplot(investment_annual_summary, aes(x = fiscal_year, y=dollars_in_millions, co
 ### Investment Projects in Brazil
 
 The `investment_services_projects` dataset provides information about each investment project from 2012 to 2018. Information listed includes the project name, company name, sector, project status, and investment amounts.
+
 ```{r brazil-investment-projects}
 brazil_investment_projects <- investment_services_projects %>%
   filter(country == "Brazil") 
@@ -192,12 +193,6 @@ brazil_investment_projects_2018 <- investment_services_projects %>%
          date_disclosed >= "2017-07-01",
          date_disclosed <= "2018-06-30")
 ```
-
-
-EEEEEEEE
-
-
-
 ```{r data, include = FALSE}
 library(readr)
 library(dplyr)
@@ -247,12 +242,6 @@ brazil_investment_projects_2018 <- investment_services_projects %>%
          date_disclosed >= "2017-07-01",
          date_disclosed <= "2018-06-30") 
 ```
-
-FFFFFFFFF
-
-
-
-
 ```{r data, include = FALSE}
 library(readr)
 library(dplyr)
@@ -334,7 +323,8 @@ investment_services_projects <- read_csv("https://assets.datacamp.com/production
 
 ### Investment Annual Summary
 
-The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018.
+The `investment_annual_summary` dataset provides a summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018:
+
 ```{r investment-annual-summary}
 ggplot(investment_annual_summary, aes(x = fiscal_year, y = dollars_in_millions, color = region)) +
   geom_line() +
@@ -381,8 +371,6 @@ ggplot(brazil_investment_projects_2018, aes(x = date_disclosed, y = total_invest
 
 
 # Example
-
-
 
 
 ### Investment Projects in Brazil
