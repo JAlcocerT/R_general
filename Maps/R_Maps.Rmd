@@ -1,0 +1,182 @@
+---
+title: "R_Maps"
+author: "JAT"
+date: "28/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Natural earth R package
+
+<https://www.naturalearthdata.com/>
+
+```{r setup}
+
+#devtools::install_github("ropenscilabs/rnaturalearthdata")
+#install.packages("rnaturalearthhires",
+#                 repos = "http://packages.ropensci.org",
+#                type = "source")
+
+#install.packages("rnaturalearth")
+
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+
+library(sp)
+
+```
+
+
+```{r}
+
+
+vignette('what-is-a-country', package='rnaturalearth')
+```
+
+
+```{r all countries}
+
+
+#world countries
+sp::plot(ne_countries())
+#sp::plot(ne_countries(continent="europe"))
+```
+```{r all countries}
+
+
+#world countries
+sp::plot(ne_states())
+```
+
+```{r one country}
+
+#uk
+sp::plot(ne_countries(country = 'united kingdom'))
+
+
+# countries, UK undivided
+#sp::plot(ne_countries(country = 'united kingdom', type = 'countries'))
+```
+```{r}
+# map_units, UK divided into England, Scotland, Wales and Northern Ireland
+sp::plot(ne_countries(country = 'united kingdom', type = 'map_units'))
+```
+```{r}
+sp::plot(ne_states(country = 'spain')) 
+
+```
+```{r}
+sp::plot(ne_states(country = 'turkey')) 
+
+```
+
+
+```{r regions}
+#states, admin level1 boundaries
+sp::plot(ne_states(country = 'spain')) 
+```
+
+
+
+
+```{r}
+#lakes
+#install.packages("rgdal")
+lakes110 <- ne_download(scale = 110, type = 'lakes', category = 'physical')
+sp::plot(lakes110)
+```
+
+## ggplot2 and naturalearth
+
+
+```{r}
+#install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel","ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+#install.packages("rgeos")
+
+library("ggplot2")
+theme_set(theme_bw())
+library("sf")
+
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+
+ggplot(data = world) +
+    geom_sf() #it adds a geometry stored in a sf object
+```
+
+```{r}
+ggplot(data = world) +
+    geom_sf() +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("World map", subtitle = paste0("(", length(unique(world$name)), " countries)"))
+```
+
+
+```{r}
+ggplot(data = world) + 
+    geom_sf(color = "black", fill = "lightgreen")
+```
+
+```{r}
+ggplot(data = world) +
+    geom_sf(aes(fill = pop_est)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+```
+
+The function coord_sf allows to deal with the coordinate system, which includes both projection and extent of the map
+
+```{r}
+
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(crs = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs ")
+```
+
+
+The extent of the map can also be set in coord_sf, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (xlim), and on the y-axis (ylim). Note that the limits are automatically expanded by a fraction to ensure that data and axes don’t overlap; it can also be turned off to exactly match the limits provided with expand = FALSE
+
+```{r}
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97), expand = FALSE)
+
+```
+
+
+```{r}
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(xlim = c(-50, 50), ylim = c(25, 75), expand = FALSE)
+
+```
+
+
+```{r}
+library("ggspatial")
+ggplot(data = world) +
+    geom_sf() +
+    annotation_scale(location = "bl", width_hint = 0.5) +
+    annotation_north_arrow(location = "bl", which_north = "true", 
+        pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
+        style = north_arrow_fancy_orienteering) +
+    coord_sf(xlim = c(-50, 50), ylim = c(25, 75))
+
+## Scale on map varies by more than 10%, scale bar may be inaccurate
+```
+
+
+```{r save map}
+
+ggsave("map.pdf")
+ggsave("map_web.png", width = 6, height = 6, dpi = "screen")
+
+```
