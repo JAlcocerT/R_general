@@ -28,7 +28,7 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 
 
-library(sp)
+library(sp) #spatialPointsDataFrame
 
 ```
 
@@ -179,4 +179,59 @@ ggplot(data = world) +
 ggsave("map.pdf")
 ggsave("map_web.png", width = 6, height = 6, dpi = "screen")
 
+```
+
+
+R World Map
+
+```{r}
+
+#install.packages("rworldmap")
+library(rworldmap)
+
+theCountries <- c("DEU", "COD", "BFA")
+# These are the ISO3 names of the countries you'd like to plot in red
+
+malDF <- data.frame(country = c("DEU", "COD", "BFA"),
+  malaria = c(1, 1, 1))
+# malDF is a data.frame with the ISO3 country names plus a variable to
+# merge to the map data
+
+malMap <- joinCountryData2Map(malDF, joinCode = "ISO3",
+  nameJoinColumn = "country")
+# This will join your malDF data.frame to the country map data
+
+mapCountryData(malMap, nameColumnToPlot="malaria", catMethod = "categorical",
+  missingCountryCol = gray(.8))
+# And this will plot it, with the trick that the color palette's first
+# color is red
+
+```
+
+
+
+```{r}
+## Create multiple color codes, with Burkina Faso in its own group
+malDF <- data.frame(country = c("DEU", "COD", "BFA"),
+  malaria = c(1, 1, 2))
+
+## Re-merge
+malMap <- joinCountryData2Map(malDF, joinCode = "ISO3",
+  nameJoinColumn = "country")
+
+## Specify the colourPalette argument
+mapCountryData(malMap, nameColumnToPlot="malaria", catMethod = "categorical",
+  missingCountryCol = gray(.8), colourPalette = c("red", "blue"))
+
+```
+
+## maptools
+
+```{r}
+library(maptools)
+
+data(wrld_simpl)
+myCountries = wrld_simpl@data$NAME %in% c("Australia", "United Kingdom", "Germany", "United States", "Sweden", "Netherlands", "New Zealand")
+
+plot(wrld_simpl, col = c(gray(.80), "red")[myCountries+1])
 ```
