@@ -4,3 +4,4 @@ Contains explanation and examples on how to graph the world in R
   * maptools
   * rworldmap
   * plotly and geojson
+  * shapefiles
