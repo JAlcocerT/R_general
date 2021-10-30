@@ -21,7 +21,12 @@ Contains explanation and examples on how to graph the world in R
        }
     }
   * topojson
+
+
   * shapefiles (SHP)
+  1. https://www.diva-gis.org/gdata
+  2. 
+  
   * gdv
   * svg
 
