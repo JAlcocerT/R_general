@@ -4,4 +4,12 @@ Contains explanation and examples on how to graph the world in R
   * maptools
   * rworldmap
   * plotly and geojson
-  * shapefiles
+  * topojson
+  * shapefiles (SHP)
+  * gdv
+  * svg
+
+
+### Data sources
+
+<https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/> ---> Local Administrative Units (LAU) 2019
