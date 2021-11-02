@@ -1,103 +1,85 @@
 ---
-title: "Plotly_buttons"
-author: "JAT"
-date: "1/11/2021"
-output: html_document
+title: "Flex Dashboards"
+author: JAT
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: column
+    vertical_layout: fill
+    source_code: embed
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(flexdashboard)
 ```
 
 
+US unemployment
+=======================================================================
+Column {data-width=500}
+-----------------------------------------------------------------------
 
-```{r PLOTLY update buttons and quantmod}
+### US unemployment
 
-#https://plotly.com/r/custom-buttons/
+```{r}
+
+#https://www.r-bloggers.com/2020/09/deploying-flexdashboard-on-github-pages/
 
 library(plotly)
-library(quantmod)
+library(rjson)
 
-d <- quantmod::getSymbols("AAPL")
-
-df <- data.frame(Date=index(AAPL),coredata(AAPL))
-
-high_annotations <- list(
-  x=df$Date[df$AAPL.High == max(df$AAPL.High)], 
-  y=max(df$AAPL.High),
-  xref='x', yref='y',
-  text=paste0('High: $',max(df$AAPL.High)),
-  ax=0, ay=-40
+url <- 'https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'
+counties <- rjson::fromJSON(file=url)
+url2<- "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
+df <- read.csv(url2, colClasses=c(fips="character"))
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
 )
-
-low_annotations <- list(
-  x=df$Date[df$AAPL.Low == min(df$AAPL.Low)], 
-  y=min(df$AAPL.Low),
-  xref='x', yref='y',
-  text=paste0('Low: $',min(df$AAPL.Low)),
-  ax=0, ay=40
-)
-
-# updatemenus component
-updatemenus <- list(
-  list(
-    active = -1,
-    type= 'buttons',
-    buttons = list(
-      list(
-        label = "High",
-        method = "update",
-        args = list(list(visible = c(FALSE, TRUE)),
-                    list(title = "Apple High",
-                         annotations = list(c(), high_annotations)))),
-      list(
-        label = "Low",
-        method = "update",
-        args = list(list(visible = c(TRUE, FALSE)),
-                    list(title = "Apple Low",
-                         annotations = list(low_annotations, c() )))),
-      list(
-        label = "Both",
-        method = "update",
-        args = list(list(visible = c(TRUE, TRUE)),
-                    list(title = "Apple",
-                         annotations = list(low_annotations, high_annotations)))),
-      list(
-        label = "Reset",
-        method = "update",
-        args = list(list(visible = c(TRUE, TRUE)),
-                    list(title = "Apple",
-                         annotations = list(c(), c())))))
+fig <- plot_ly()
+fig <- fig %>% add_trace(
+    type="choropleth",
+    geojson=counties,
+    locations=df$fips,
+    z=df$unemp,
+    colorscale="Viridis",
+    zmin=0,
+    zmax=12,
+    marker=list(line=list(
+      width=0)
+    )
   )
+fig <- fig %>% colorbar(title = "Unemployment Rate (%)")
+fig <- fig %>% layout(
+    title = "2016 US Unemployment by County"
 )
 
-fig <- df %>% plot_ly(type = 'scatter', mode = 'lines') 
-fig <- fig %>% add_lines(x=~Date, y=~AAPL.High, name="High",
-            line=list(color="#33CFA5")) 
-fig <- fig %>% add_lines(x=~Date, y=~AAPL.Low, name="Low",
-            line=list(color="#F06A6A")) 
-
-fig <- fig %>% layout(title = "Apple", showlegend=FALSE,
-         xaxis=list(title="Date"),
-         yaxis=list(title="Price ($)"),
-         updatemenus=updatemenus)
-
+fig <- fig %>% layout(
+    geo = g
+  )
 
 fig
 
-
-```
-
-
-```{r}
-
-
+#Column {data-width=800}
+#-----------------------------------------------------------------------
 
 ```
 
 
 
+Finance related
+=======================================================================
+
+Column {.tabset data-width=400}
+-----------------------------------------------------------------------
+
+### Retirement facts test
+
+
 ```{r}
+
 
 library(formattable)
 library(plotly)
@@ -191,7 +173,7 @@ theorical_annotations <- list(
   x=df2$age[df2$real_savings == max(df2$real_savings)], 
   y=max(df2$real_savings),
   xref='x', yref='y',
-  text=paste0(comma(max(df2$real_savings),digits =0)," out of $",comma(max_savings,digits=0)),
+  text=paste0(comma(100*max(df2$real_savings)/max_savings,digits=2),'% of theorical max'),
   ax=30, ay=70
 )
 
@@ -253,5 +235,61 @@ fig <- fig %>% layout(title = "Savings", showlegend=FALSE,
 
 fig
 
+
 ```
 
+### Chart C
+
+```{r}
+# volcano is a numeric matrix that ships with R
+fig <- plot_ly(z = ~volcano) %>% add_surface(
+  contours = list(
+    z = list(
+      show=TRUE,
+      usecolormap=TRUE,
+      highlightcolor="#ff0000",
+      project=list(z=TRUE)
+      )
+    )
+  )
+fig <- fig %>% layout(
+    scene = list(
+      camera=list(
+        eye = list(x=1.87, y=0.88, z=-0.64)
+        )
+      )
+  )
+fig
+```
+
+
+
+TEST
+=======================================================================
+
+
+```{r global, include=FALSE}
+x<-rnorm(1000)
+```
+
+Row 
+-------------------------------------
+    
+### Selección del número de intervalos
+
+```{r}
+sliderInput("bins", "Número de intervalos", 
+             min = 1, max = 100, value = 30,width = "90%")
+
+```  
+
+Row 
+-------------------------------------
+
+### Histograma
+
+```{r}
+renderPlot({
+  hist(x, breaks = input$bins)
+})
+```

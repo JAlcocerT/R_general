@@ -1,0 +1,70 @@
+---
+title: "Shiny_test"
+author: "JAT"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: column
+    vertical_layout: fill
+    source_code: embed
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+    
+Static example
+=====================================  
+
+
+Row {data-height=400 }
+-------------------------------------
+    
+### CAJA 1: Muestra aleatoria Normal estándar
+    
+```{r}
+x<-rnorm(100)
+head(x,50)
+```
+   
+Row {data-height=368 }
+-------------------------------------
+    
+### CAJA 2: Últimos elementos de la muestra
+
+```{r}
+tail(x,20)
+```  
+    
+### CAJA 3: Gráfico de la muestra
+
+```{r}
+plot(x)
+```
+
+Dinamic example
+=====================================  
+
+Inputs {.sidebar data-width=300}
+-----------------------------------------------------------------------
+
+```{r}
+sliderInput("bins", "Número de intervalos", 
+             min = 1, max = 100, value = 30,width = "90%")
+```
+
+```{r global, include=FALSE}
+x<-rnorm(1000)
+```
+
+Row 
+-------------------------------------
+
+### Histograma
+
+```{r}
+renderPlot({
+  hist(x, breaks = input$bins)
+})
+```

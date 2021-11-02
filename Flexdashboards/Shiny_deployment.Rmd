@@ -1,0 +1,34 @@
+---
+title: "Shiny_deployment"
+author: "JAT"
+date: "2/11/2021"
+output: html_document
+---
+
+
+```{r}
+
+#https://www.shinyapps.io/admin/#/dashboard
+#install.packages('rsconnect')
+
+#Remember to use your:
+rsconnect::setAccountInfo(name='your_user_name',
+			  token='your_token',
+			  secret='your_secret')
+
+```
+
+
+```{r}
+
+library(rsconnect)
+
+wd<-dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(wd)
+
+#deploy
+#rsconnect::deployApp('index.Rmd')
+rsconnect::deployApp('index_Shiny_2.Rmd')
+
+
+```
