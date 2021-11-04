@@ -2,3 +2,6 @@ How to create flexdashboards on GH pages or host your shiny app where possible (
 
 
 * Shiny: <https://shiny.rstudio.com/articles/shinyapps.html>
+
+
+Link to my other repo: <https://github.com/reisikei/R_Dashboard>
