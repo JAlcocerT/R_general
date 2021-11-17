@@ -3,22 +3,24 @@
 
 #It returns the modified DF - with the "Cumulative_differenced" column included
 
+#column_1 <- c(1, 2, 3)
+#column_2 <- c(21000, 23400, 30000)
+#df_example <- data.frame(column_1, column_2)
 
-cumulative_diference_V2 <- function(my_df,column_name)
+cumulative_difference <- function(my_df,column_name)
 {
   
-  cumulative_diference=rep(0,nrow(my_df))
-  cumulative_diference[1] <- my_data[1,column_name]
+  cumulative_difference=rep(0,nrow(my_df))
+  cumulative_difference[1] <- my_df[1,column_name]
   
   for(i in 2:nrow(my_df)){
-    cumulative_diference[i] <- my_df[i,column_name]-my_df[i-1,column_name]
+    cumulative_difference[i] <- my_df[i,column_name]-my_df[i-1,column_name]
   }
   
-  my_df["Cumulative_differenced"] <- unlist(cumulative_diference)
+  my_df["Cumulative_differenced"] <- unlist(cumulative_difference)
   
   return(my_df)
 }
 
 
-#test <- cumulative_diference_V2(my_df=my_data,column_name="Stacked_forever")
-
+#test <- cumulative_difference(my_df=df_example,column_name="column_2")
