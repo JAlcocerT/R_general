@@ -7,10 +7,11 @@ library(priceR) #adjust_for_inflation()
 library(BatchGetSymbols) #get.clean.data()
 
 
+
 months_start <- function(df)
 {
   
-  df1 <- data.frame(df.sp500$price.close,df.sp500$ref.date)
+  df1 <- data.frame(df$price.close,df$ref.date)
   names(df1)[1] <- "Index"
   names(df1)[2] <- "Dates"
   
