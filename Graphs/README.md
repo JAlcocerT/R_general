@@ -18,4 +18,8 @@ plot_ly(y = ~Index_df$percentage_differenced, type = "box")
 
 plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box")
 
+        data_frame() %>%  plot_ly(x = ~decades, y = ~percentage_differenced, type = "box") %>%   
+        layout(title = 'Monthly index variation percentages by decade', xaxis = list(title = 'Decade'), 
+         yaxis = list(title = 'Variation (Monthly %)'))
+
 ```
