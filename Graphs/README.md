@@ -23,3 +23,26 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
          yaxis = list(title = 'Variation (Monthly %)'))
 
 ```
+
+
+* Line_plot:
+
+```
+
+        ggplot() + geom_line(data = data_frame(), aes(Dates, real_SP500,colour="red"))+
+          geom_line(data = data_frame(), aes(Dates, SP500,colour="green"))+
+          labs(title="SP500 Real vs Nominal\n", x="Year", y="SP500 ($ value)") +
+          scale_y_continuous(labels = dollar) +
+          scale_color_hue(labels = c("Nominal","Real @2020 $")) +
+          guides(color=guide_legend("Legend"))
+          
+          
+           data_frame() %>% 
+           ungroup() %>%
+          plot_ly(x = ~Dates, y = ~real_SP500, name = 'SP500 inflation corrected', type = 'scatter', mode = 'lines')  %>% 
+            add_trace(y = ~SP500, name = 'SP500 value', mode = 'lines') %>%   
+            layout(title = 'SP500 trend',
+               xaxis = list(title = 'Year'),
+               yaxis = list(title = 'SP500 (Real vs nominal $)'))
+          
+```
