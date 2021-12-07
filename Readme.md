@@ -5,9 +5,20 @@ date: "6/21/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
+* API
+* Animations
+* Flexdashboards
+* Graphs
+* Maps
+* Rmd
+* SQL
+* UDF
+   * Cumulative_difference
+   * Months_start
+   * Percentage_difference
+
+
 
 ## R Markdown
 
