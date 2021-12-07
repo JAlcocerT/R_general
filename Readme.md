@@ -7,6 +7,8 @@ output: html_document
 
 
 * API
+  * coinmarketcapr
+  * rbitcoin
 * Animations
 * Flexdashboards
 * Graphs
