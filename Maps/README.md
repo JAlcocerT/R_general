@@ -21,10 +21,10 @@ Contains explanation and examples on how to graph the world in R
        }
     }
     
-  * topojson
+  * Topojson
 
 
-  * shapefiles (SHP)
+  * Shapefiles (SHP)
   1. https://www.diva-gis.org/gdata
   2. 
   
