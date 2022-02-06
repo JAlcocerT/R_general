@@ -1,10 +1,4 @@
----
-title: "R basico"
-author: "JAT"
-date: "6/21/2021"
-output: html_document
----
-
+## Description of the repository:
 
 * API
   * coinmarketcapr
