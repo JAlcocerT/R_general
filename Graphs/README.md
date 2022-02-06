@@ -1,3 +1,20 @@
+
+
+## Sources for new graphs ideas/inspiration:
+<https://chartmaker.visualisingdata.com/>
+
+<https://d3js.org/>
+<https://vizzlo.com/graphs>
+<https://www.datawrapper.de/>
+<https://rawgraphs.io/gallery>
+
+<https://www.reddit.com/r/DataArt/>
+<https://www.reddit.com/r/dataisbeautiful/>
+
+#### Color blindness considerations:
+<https://medialab.github.io/iwanthue/>
+<https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3>
+
 ### Plotly
 
 * animations <https://plotly.com/r/animations/>
@@ -46,3 +63,11 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
                yaxis = list(title = 'SP500 (Real vs nominal $)'))
           
 ```
+
+* Scatter plot
+
+* Connected scatter plot
+
+* Slope graph
+
+* Butterfly chart
