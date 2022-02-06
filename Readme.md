@@ -7,6 +7,12 @@
 * Animations
 * Dashboards
 * Graphs
+   *  Box plot
+   *  Line plot
+   *  Scatter plot
+   *  Connected scatter plot
+   *  Slope graph
+   *  Butterfly chart
 * Maps
 * Rmd
 * SQL
