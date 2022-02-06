@@ -9,8 +9,9 @@ output: html_document
 * API
   * coinmarketcapr
   * rbitcoin
+  * quantmod
 * Animations
-* Flexdashboards
+* Dashboards
 * Graphs
 * Maps
 * Rmd
