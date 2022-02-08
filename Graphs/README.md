@@ -67,7 +67,18 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Scatter plot
 
 * Connected scatter plot
+* Sparkline
 
 * Slope graph
 
 * Butterfly chart
+* Tree map - for long tail data
+* Bar tree map
+* Mekko chart
+* Heatmap
+* Pie charts
+* Bar chart
+* Stacked bar chart
+* Stacked area chart
+
+
