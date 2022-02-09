@@ -79,6 +79,8 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Pie charts
 * Bar chart
 * Stacked bar chart
+* Line plot
+* Combo chart
 * Stacked area chart
 
 
