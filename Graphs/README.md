@@ -79,8 +79,24 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Pie charts
 * Bar chart
 * Stacked bar chart
+
+* Funnel visualization - great options in the following contexts:
+
+        * When the data is sequential and moves through at least four stages.
+        * When the number of items in the first stage is expected to be greater than the number of items in the final stage.
+        * To calculate a potential outcome (revenue, sales, deals, and so on) by stages.
+        * To calculate and track conversion and retention rates.
+        * To reveal bottlenecks in a linear process.
+* Waterfall
+
+        * Visualize changes over time or across different categories.
+        * Audit the major changes that contribute to the total value.
+        * Plot your organization's annual profit by showing various sources of revenue to help determine the total profit (or loss).
+        * Illustrate the beginning and ending headcount for your organization in a year.
+        * Visualize how much money you earn and spend each month and the running balance for your account.
+
 * Line plot
 * Combo chart
 * Stacked area chart
 
-
+* Gauge chart
