@@ -13,9 +13,9 @@
 
 #### Which Kind of Visual should I choose?
 
-http://selection.datavisualization.ch/
-https://www.data-to-viz.com/index.html
-https://datavizproject.com/
+<http://selection.datavisualization.ch/>
+<https://www.data-to-viz.com/index.html>
+<https://datavizproject.com/>
 
 #### Color blindness considerations:
 <https://medialab.github.io/iwanthue/>
