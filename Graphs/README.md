@@ -11,6 +11,12 @@
 <https://www.reddit.com/r/DataArt/>
 <https://www.reddit.com/r/dataisbeautiful/>
 
+#### Which Kind of Visual should I choose?
+
+http://selection.datavisualization.ch/
+https://www.data-to-viz.com/index.html
+https://datavizproject.com/
+
 #### Color blindness considerations:
 <https://medialab.github.io/iwanthue/>
 <https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3>
