@@ -1,25 +1,27 @@
 
 
 ## Sources for new graphs ideas/inspiration:
-<https://chartmaker.visualisingdata.com/>
+* <https://chartmaker.visualisingdata.com/>
 
-<https://d3js.org/>
-<https://vizzlo.com/graphs>
-<https://www.datawrapper.de/>
-<https://rawgraphs.io/gallery>
+* <https://d3js.org/>
+* <https://vizzlo.com/graphs>
+* <https://www.datawrapper.de/>
+* <https://rawgraphs.io/gallery>
 
-<https://www.reddit.com/r/DataArt/>
-<https://www.reddit.com/r/dataisbeautiful/>
+* <https://www.reddit.com/r/DataArt/>
+* <https://www.reddit.com/r/dataisbeautiful/>
 
 #### Which Kind of Visual should I choose?
 
 * <http://selection.datavisualization.ch/>
+* http://ft-interactive.github.io/visual-vocabulary/
+
 * <https://www.data-to-viz.com/index.html>
 * <https://datavizproject.com/>
 
 #### Color blindness considerations:
-<https://medialab.github.io/iwanthue/>
-<https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3>
+* <https://medialab.github.io/iwanthue/>
+* <https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3>
 
 ### Plotly
 
