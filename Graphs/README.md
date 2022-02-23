@@ -80,11 +80,12 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Slope graph
 
 * Butterfly chart
-* Tree map - for long tail data
+* Tree map - for long tail data / hierarchical data
 * Bar tree map
 * Mekko chart
 * Heatmap
 * Pie charts
+* Cox Comb
 * Bar chart
 * Stacked bar chart
 
@@ -108,3 +109,4 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Stacked area chart
 
 * Gauge chart
+* Maps - choropleth 
