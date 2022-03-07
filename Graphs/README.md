@@ -74,9 +74,13 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 
 * Scatter plot - good to see correlation between variables
 
-<https://www.gapminder.org/tools/?from=world#$chart-type=bubbles&url=v1> - fantastic example an how much information can be conveyed with an animated Scatter plot
+
 
 * Connected scatter plot
+* Bubble chart
+
+        <https://www.gapminder.org/tools/?from=world#$chart-type=bubbles&url=v1> - fantastic example an how much information can be conveyed with an animated Scatter plot
+
 * Sparkline
 
 * Slope graph
