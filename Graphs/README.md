@@ -121,7 +121,7 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
         
 * Ven's Diagram
 
-* Radar chart - use with caution if there is too much output data
+* Radar/Spider chart - use with caution if there is too much output data
 
 * Gauge chart
 * Maps 
