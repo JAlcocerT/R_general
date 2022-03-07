@@ -3,7 +3,7 @@
 ## Sources for new graphs ideas/inspiration:
 * <https://chartmaker.visualisingdata.com/>
 
-* <https://d3js.org/>
+* <https://d3js.org/> - Data driven documents, javascript FOSS library
 * <https://vizzlo.com/graphs>
 * <https://www.datawrapper.de/>
 * <https://rawgraphs.io/gallery>
@@ -72,7 +72,9 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
           
 ```
 
-* Scatter plot
+* Scatter plot - good to see correlation between variables
+
+<https://www.gapminder.org/tools/?from=world#$chart-type=bubbles&url=v1> - fantastic example an how much information can be conveyed with an animated Scatter plot
 
 * Connected scatter plot
 * Sparkline
@@ -84,7 +86,7 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Bar tree map
 * Mekko chart
 * Heatmap
-* Pie charts
+* Pie charts - recommended for few categories only 2-4
 * Cox Comb
 * Bar chart
 * Stacked bar chart
@@ -108,5 +110,17 @@ plot_ly(y = ~Index_df$percentage_differenced, x = ~Index_df$decades, type = "box
 * Combo chart
 * Stacked area chart
 
+* Node-link diagram
+* Chord diagram 
+
+        <https://bost.ocks.org/mike/uberdata/>
+        
+* Ven's Diagram
+
+* Radar chart - use with caution if there is too much output data
+
 * Gauge chart
-* Maps - choropleth 
+* Maps 
+
+        * Choropleth 
+        * 
